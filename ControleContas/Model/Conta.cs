@@ -11,6 +11,7 @@ namespace ControleContas.Model
 
         private string _numero;
         private decimal _saldo;
+        private static decimal _saldoTotal;
 
         //Polimorfismo de sobrecarga
         public Conta(string numero)
@@ -22,6 +23,7 @@ namespace ControleContas.Model
         {
             _saldo = saldo;
             _numero = numero;
+            _saldoTotal += saldo;
         }
 
         public string Numero {
@@ -32,5 +34,6 @@ namespace ControleContas.Model
             get => _saldo; 
             private set => _saldo = value; 
         }
+        public decimal SaldoTotal { get =>_saldoTotal; private set => _saldoTotal = value; }
     }
 }
