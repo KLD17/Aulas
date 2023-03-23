@@ -22,11 +22,12 @@ namespace ControleContas.Model
             _numero = numero;
         }
 
-        public Conta(string numero, decimal saldo) 
+        public Conta(string numero, decimal saldo,Cliente titular) 
         {
             _saldo = saldo;
             _numero = numero;
             _saldoTotal += saldo;
+            Titular = titular;
             if
                 (_saldo > _MaiorSaldo)
             { 
@@ -34,6 +35,15 @@ namespace ControleContas.Model
 
                 _contaMaiorSaldo = _numero;
             }
+
+            
+        }
+
+        public Conta(string numero, Cliente titular)  {
+            
+            _numero = numero;
+       
+            Titular = titular;
         }
 
         public string Numero {
@@ -52,6 +62,7 @@ namespace ControleContas.Model
             get => _contaMaiorSaldo;
         }
 
+        public Cliente Titular { get; set; }
     }
 
 }
