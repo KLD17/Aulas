@@ -22,7 +22,7 @@ namespace ControleContas.Model
             _numero = numero;
         }
 
-        public Conta(string numero, decimal saldo,Cliente titular) 
+        public Conta(string numero, decimal saldo, Cliente titular)
         {
             _saldo = saldo;
             _numero = numero;
@@ -30,31 +30,34 @@ namespace ControleContas.Model
             Titular = titular;
             if
                 (_saldo > _MaiorSaldo)
-            { 
+            {
                 _MaiorSaldo = _saldo;
 
                 _contaMaiorSaldo = _numero;
             }
 
-            
+
         }
 
-        public Conta(string numero, Cliente titular)  {
-            
+        public Conta(string numero, Cliente titular)
+        {
+
             _numero = numero;
-       
+
             Titular = titular;
         }
 
-        public string Numero {
-            get => _numero; 
-            private set => _numero = value; 
+        public string Numero
+        {
+            get => _numero;
+            private set => _numero = value;
         }
-        public decimal Saldo { 
-            get => _saldo; 
-            private set => _saldo = value; 
+        public decimal Saldo
+        {
+            get => _saldo;
+            private set => _saldo = value;
         }
-        public decimal SaldoTotal { get =>_saldoTotal; private set => _saldoTotal = value; }
+        public decimal SaldoTotal { get => _saldoTotal; private set => _saldoTotal = value; }
 
         public string ContaMaiorSaldo
         {
@@ -63,6 +66,37 @@ namespace ControleContas.Model
         }
 
         public Cliente Titular { get; set; }
-    }
 
+        public void Deposito(decimal valor)
+        {
+            if (valor > 0)
+            {
+                _saldo += valor;
+            }
+
+        }
+
+
+        public decimal Saque(decimal valorSaque)
+        {
+            if (valorSaque > _saldo)
+            {
+                throw new ArgumentException("O valor do saque não podera deixar a conta negativa");
+            }
+            
+            _saldo -= valorSaque;
+            return _saldo;
+        }
+
+        public Conta(int numero)
+        {
+
+        }
+
+    }
 }
+
+
+       
+           
+
